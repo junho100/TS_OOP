@@ -1,7 +1,8 @@
 /**
  * Let's make a calculator 🧮
  */
-const calculate = (op: string, a: number, b: number): number => {
+type Op = "add" | "substract" | "multiply" | "divide" | "remainder";
+const calculate = (op: Op, a: number, b: number): number => {
   switch (op) {
     case "add": {
       return a + b;
