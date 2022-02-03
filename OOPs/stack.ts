@@ -1,4 +1,5 @@
 interface IStack {
+  readonly size: number;
   presentNode: IStackNode | undefined;
   push(value: number): void;
   pop(): number;
@@ -10,13 +11,19 @@ interface IStackNode {
 }
 
 class Stack implements IStack {
+  private _size: number;
+  get size() {
+    return this._size;
+  }
   presentNode: IStackNode | undefined;
   constructor() {
+    this._size = 0;
     this.presentNode = undefined;
   }
 
   push = (value: number): void => {
-    if (this.presentNode === undefined) {
+    this._size += 1;
+    if (this.presentNode == null) {
       this.presentNode = new StackNode(value, undefined);
       return;
     }
@@ -27,13 +34,14 @@ class Stack implements IStack {
   };
 
   pop = (): number => {
-    if (this.presentNode === undefined) {
+    if (this.presentNode == null) {
       throw new Error("Empty Stack!");
     }
     console.log(this.presentNode.value);
     const target = this.presentNode.prevNode;
     const val = this.presentNode.value;
     this.presentNode = target;
+    this._size -= 1;
     return val;
   };
 }
