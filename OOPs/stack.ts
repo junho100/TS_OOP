@@ -1,6 +1,5 @@
 interface IStack {
   readonly size: number;
-  presentNode: IStackNode | undefined;
   push(value: number): void;
   pop(): number;
 }
