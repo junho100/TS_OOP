@@ -1,0 +1,12 @@
+1. must have
+add image
+add youtube video
+add note
+add todo list
+delete sections
+
+2. good to have
+dragging
+
+3. nice to have
+update
