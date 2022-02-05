@@ -1,0 +1,123 @@
+body {
+  height: 95vh;
+  width: 100%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: none;
+  height: 35%;
+  width: 35%;
+  background-color: grey;
+  position: fixed;
+  z-index: 1;
+  padding: 10px;
+  /*메뉴 클릭 시
+  display : block;
+  */
+}
+.modal > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.modal > form > label {
+  align-self: flex-start;
+  position: relative;
+  top: 5%;
+  color: yellow;
+  font-size: larger;
+}
+.modal > form > input {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  height: 15%;
+}
+.close,
+.add {
+  align-self: flex-end;
+}
+.close {
+  color: red;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  font-size: larger;
+}
+.add {
+  width: 12%;
+  height: 15%;
+  border: 0;
+  outline: 0;
+  border-radius: 10%;
+  background-color: red;
+  color: white;
+}
+#img_modal {
+  display: block;
+}
+#app {
+  /*filter: brightness(30%); 메뉴 클릭 시*/
+  filter: brightness(30%);
+  height: 100%;
+  width: 50%;
+  background-color: darkslategray;
+}
+
+header {
+  height: 20%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin: 0;
+  color: red;
+}
+#header_btns {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu_btn {
+  display: block;
+  height: 70%;
+  width: 18%;
+  background-color: red;
+  color: white;
+  border: 0;
+  border-radius: 5%;
+}
+.menu_btn:hover {
+  cursor: pointer;
+}
+.menu_btn:not(:last-child) {
+  margin-right: 1%;
+}
+
+main {
+  height: 75%;
+  width: 100%;
+  background-color: dimgray;
+}
+
+footer {
+  height: 5%;
+  width: 100%;
+  background-color: black;
+  color: gray;
+  display: flex;
+  justify-content: center;
+}

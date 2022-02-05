@@ -2,9 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./stytle/style.css" />
+    <script src="./build/index.js"></script>
+    <title>Motion</title>
   </head>
-  <body></body>
+  <body>
+    <div class="modal" id="img_modal">
+      <form>
+        <button class="close">X</button>
+        <label>Title</label>
+        <input>
+        <label>URL</label>
+        <input>
+        <button class="add">ADD</button>
+      </form>
+    </div>
+    <div class="modal" id="vid_modal">
+      <form>
+        <button class="close">X</button>
+        <label>Title</label>
+        <input>
+        <label>URL</label>
+        <input>
+        <button class="add">ADD</button>
+      </form>
+    </div>
+    <div class="modal" id="note_modal">
+      <form>
+        <button class="close">X</button>
+        <label>Title</label>
+        <input>
+        <label>BODY</label>
+        <input>
+        <button class="add">ADD</button>
+      </form>
+    </div>
+    <div class="modal" id="task_modal">
+      <form>
+        <button class="close">X</button>
+        <label>Title</label>
+        <input>
+        <label>BODY</label>
+        <input>
+        <button class="add">ADD</button>
+      </form>
+    </div>
+    <div id="app">
+      <header>
+        <h1>Motion</h1>
+        <div id="header_btns">
+          <button id="img" class="menu_btn">IMAGE</button>
+          <button id="vid" class="menu_btn">VIDEO</button>
+          <button id="note" class="menu_btn">NOTE</button>
+          <button id="task" class="menu_btn">TASK</button>
+        </div>
+      </header>
+      <main></main>
+      <footer>Made by JunHoBaek</footer>
+    </main>
+  </body>
 </html>
