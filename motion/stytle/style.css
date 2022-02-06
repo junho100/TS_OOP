@@ -43,6 +43,7 @@ body {
 .close,
 .add {
   align-self: flex-end;
+  cursor: pointer;
 }
 .close {
   color: red;
@@ -60,12 +61,13 @@ body {
   background-color: red;
   color: white;
 }
-#img_modal {
+/*메뉴 클릭 시*/
+/* #img_modal {
   display: block;
-}
+} */
 #app {
-  /*filter: brightness(30%); 메뉴 클릭 시*/
-  filter: brightness(30%);
+  /*메뉴 클릭 시*/
+  /* filter: brightness(30%); */
   height: 100%;
   width: 50%;
   background-color: darkslategray;
