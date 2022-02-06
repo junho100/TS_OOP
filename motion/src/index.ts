@@ -1,3 +1,60 @@
+type content = {
+  id: number;
+  type: "img" | "vid" | "note" | "task";
+  title: string;
+  info: string;
+};
+interface contents {
+  nextId: number;
+  datas: content[];
+  createContent(type: string, title: string, info: string): void;
+  renderContent(): void;
+  deleteContent(): void;
+}
+
+class Icontents implements contents {
+  nextId: number = 0;
+  datas: content[] = [];
+  constructor() {}
+
+  createContent(
+    type: "img" | "vid" | "note" | "task",
+    title: string,
+    info: string
+  ): void {
+    const tmp: content = {
+      id: this.nextId,
+      title,
+      type,
+      info,
+    };
+    this.datas.push(tmp);
+    this.nextId++;
+  }
+
+  renderContent(): void {
+    const main: HTMLElement = document.getElementById("main") as HTMLElement;
+    main.innerHTML = "";
+    this.datas.map((data) => {
+      const newContent: HTMLElement = document.createElement("div");
+      const xbtn: HTMLElement = document.createElement("button");
+      xbtn.id = "close";
+      if (data.type === "img") {
+        const img: HTMLElement = document.createElement("img");
+        img.setAttribute("src", `${data.info}`);
+        const title: HTMLElement = document.createElement("h1");
+        title.innerText = data.title;
+        newContent.append(img, title, xbtn);
+      }
+      main.append(newContent);
+    });
+  }
+
+  deleteContent(): void {}
+}
+
+const Contents = new Icontents();
+
 const makeAppDark = (): void => {
   const app: HTMLElement | null = document.getElementById("app");
   (app as HTMLElement).style.filter = "brightness(30%)";
@@ -32,8 +89,8 @@ const menu: HTMLCollectionOf<Element> =
   document.getElementsByClassName("menu_btn");
 const cls: HTMLCollectionOf<Element> = document.getElementsByClassName("close");
 const add: HTMLCollectionOf<Element> = document.getElementsByClassName("add");
-
 for (let i = 0; i < 4; i++) {
+  const targetType: content["type"] = menu[i].id as content["type"];
   menu[i].addEventListener("click", (e: Event) => {
     makeAppDark();
     const id: string = (e.target as Element).id;
@@ -48,5 +105,15 @@ for (let i = 0; i < 4; i++) {
 
   add[i].addEventListener("click", (e: Event) => {
     e.preventDefault();
+    const form = document.querySelector(`#${targetType}_modal > form`);
+    const inputs = (form as Element).getElementsByTagName("input");
+    const title: string = inputs[0].value;
+    const info: string = inputs[1].value;
+    Contents.createContent(targetType, title, info);
+    inputs[0].value = "";
+    inputs[1].value = "";
+    makeAppBright();
+    closeModal();
+    Contents.renderContent();
   });
 }
