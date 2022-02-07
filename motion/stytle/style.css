@@ -132,6 +132,10 @@ img {
   align-self: center;
 }
 
+.note {
+  grid-template-columns: 2fr 1fr;
+}
+
 footer {
   height: 5%;
   width: 100%;

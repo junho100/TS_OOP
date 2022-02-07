@@ -53,13 +53,61 @@ class Icontents implements contents {
         title.className = "cotent_title";
         title.style.color = "yellow";
         newContent.append(img, title, xbtn);
+      } else if (data.type === "vid") {
+        ///<iframe width="560" height="315" src="https://www.youtube.com/embed/iDjQSdN_ig8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        const vid: HTMLElement = document.createElement("iframe");
+        vid.setAttribute("width", "180px");
+        vid.setAttribute("height", "120px");
+        vid.setAttribute(
+          "src",
+          `https://www.youtube.com/embed/${
+            data.info.split("/")[data.info.split("/").length - 1]
+          }`
+        );
+        vid.setAttribute("frameborder", "0");
+        vid.setAttribute(
+          "allow",
+          "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        );
+        const title: HTMLElement = document.createElement("h1");
+        title.innerText = data.title;
+        title.className = "cotent_title";
+        title.style.color = "yellow";
+        newContent.append(vid, title, xbtn);
+      } else if (data.type === "note") {
+        const noteMain = document.createElement("div");
+        const title: HTMLElement = document.createElement("h1");
+        title.innerText = data.title;
+        title.className = "cotent_title";
+        title.style.color = "yellow";
+        const body: HTMLElement = document.createElement("div");
+        body.innerText = data.info;
+        noteMain.append(title, body);
+        newContent.className = newContent.className + " note";
+        newContent.append(noteMain, xbtn);
+      } else if (data.type === "task") {
+        const noteMain = document.createElement("div");
+        const title: HTMLElement = document.createElement("h1");
+        title.innerText = data.title;
+        title.className = "cotent_title";
+        title.style.color = "yellow";
+        const body: HTMLElement = document.createElement("div");
+        body.style.display = "flex";
+        const check: HTMLElement = document.createElement("input");
+        check.setAttribute("type", "checkbox");
+        const todo: HTMLElement = document.createElement("div");
+        todo.innerText = data.info;
+        body.append(check, todo);
+        noteMain.append(title, body);
+        newContent.className = newContent.className + " note";
+        newContent.append(noteMain, xbtn);
       }
       main.append(newContent);
     });
   }
 
   deleteContent(id: number): void {
-    const newDatas = this.datas.filter((data) => {
+    const newDatas: content[] = this.datas.filter((data) => {
       return data.id !== id;
     });
     this.datas = newDatas;

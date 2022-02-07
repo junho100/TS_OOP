@@ -37,6 +37,49 @@ var Icontents = /** @class */ (function () {
                 title.style.color = "yellow";
                 newContent.append(img, title, xbtn);
             }
+            else if (data.type === "vid") {
+                ///<iframe width="560" height="315" src="https://www.youtube.com/embed/iDjQSdN_ig8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                var vid = document.createElement("iframe");
+                vid.setAttribute("width", "180px");
+                vid.setAttribute("height", "120px");
+                vid.setAttribute("src", "https://www.youtube.com/embed/".concat(data.info.split("/")[data.info.split("/").length - 1]));
+                vid.setAttribute("frameborder", "0");
+                vid.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+                var title = document.createElement("h1");
+                title.innerText = data.title;
+                title.className = "cotent_title";
+                title.style.color = "yellow";
+                newContent.append(vid, title, xbtn);
+            }
+            else if (data.type === "note") {
+                var noteMain = document.createElement("div");
+                var title = document.createElement("h1");
+                title.innerText = data.title;
+                title.className = "cotent_title";
+                title.style.color = "yellow";
+                var body = document.createElement("div");
+                body.innerText = data.info;
+                noteMain.append(title, body);
+                newContent.className = newContent.className + " note";
+                newContent.append(noteMain, xbtn);
+            }
+            else if (data.type === "task") {
+                var noteMain = document.createElement("div");
+                var title = document.createElement("h1");
+                title.innerText = data.title;
+                title.className = "cotent_title";
+                title.style.color = "yellow";
+                var body = document.createElement("div");
+                body.style.display = "flex";
+                var check = document.createElement("input");
+                check.setAttribute("type", "checkbox");
+                var todo = document.createElement("div");
+                todo.innerText = data.info;
+                body.append(check, todo);
+                noteMain.append(title, body);
+                newContent.className = newContent.className + " note";
+                newContent.append(noteMain, xbtn);
+            }
             main.append(newContent);
         });
     };
