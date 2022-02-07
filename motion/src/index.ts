@@ -9,7 +9,7 @@ interface contents {
   datas: content[];
   createContent(type: string, title: string, info: string): void;
   renderContent(): void;
-  deleteContent(): void;
+  deleteContent(id: number): void;
 }
 
 class Icontents implements contents {
@@ -37,20 +37,33 @@ class Icontents implements contents {
     main.innerHTML = "";
     this.datas.map((data) => {
       const newContent: HTMLElement = document.createElement("div");
+      newContent.className = "content_box";
       const xbtn: HTMLElement = document.createElement("button");
-      xbtn.id = "close";
+      xbtn.className = "close cnt";
+      xbtn.innerText = "X";
+      xbtn.addEventListener("click", () => {
+        this.deleteContent(data.id);
+        this.renderContent();
+      });
       if (data.type === "img") {
         const img: HTMLElement = document.createElement("img");
         img.setAttribute("src", `${data.info}`);
         const title: HTMLElement = document.createElement("h1");
         title.innerText = data.title;
+        title.className = "cotent_title";
+        title.style.color = "yellow";
         newContent.append(img, title, xbtn);
       }
       main.append(newContent);
     });
   }
 
-  deleteContent(): void {}
+  deleteContent(id: number): void {
+    const newDatas = this.datas.filter((data) => {
+      return data.id !== id;
+    });
+    this.datas = newDatas;
+  }
 }
 
 const Contents = new Icontents();

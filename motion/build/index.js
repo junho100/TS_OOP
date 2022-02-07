@@ -15,23 +15,37 @@ var Icontents = /** @class */ (function () {
         this.nextId++;
     };
     Icontents.prototype.renderContent = function () {
+        var _this = this;
         var main = document.getElementById("main");
         main.innerHTML = "";
         this.datas.map(function (data) {
             var newContent = document.createElement("div");
+            newContent.className = "content_box";
             var xbtn = document.createElement("button");
-            xbtn.id = "close";
+            xbtn.className = "close cnt";
+            xbtn.innerText = "X";
+            xbtn.addEventListener("click", function () {
+                _this.deleteContent(data.id);
+                _this.renderContent();
+            });
             if (data.type === "img") {
                 var img = document.createElement("img");
                 img.setAttribute("src", "".concat(data.info));
                 var title = document.createElement("h1");
                 title.innerText = data.title;
+                title.className = "cotent_title";
+                title.style.color = "yellow";
                 newContent.append(img, title, xbtn);
             }
             main.append(newContent);
         });
     };
-    Icontents.prototype.deleteContent = function () { };
+    Icontents.prototype.deleteContent = function (id) {
+        var newDatas = this.datas.filter(function (data) {
+            return data.id !== id;
+        });
+        this.datas = newDatas;
+    };
     return Icontents;
 }());
 var Contents = new Icontents();
